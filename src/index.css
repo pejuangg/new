@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+@layer base {
+  :root, [data-theme="dark"] {
+    --bg: #111317;
+    --fg: #f2eee3;
+    --card: #1f2228;
+    --popover: #0e1013;
+    --lime: #d4f534;
+    --ink: #111317;
+    --red: #e5484d;
+    --cyan: #22d3ee;
+    --paper: #e8e4d6;
+    --paper-ink: #26282e;
+    --tape: rgba(232, 224, 200, 0.75);
+    --border: rgba(255, 255, 255, 0.12);
+    --muted: #a09c8d;
+    --input-bg: #16181e;
+  }
+
+  [data-theme="light"] {
+    --bg: #f5f2eb;
+    --fg: #14171d;
+    --card: #ffffff;
+    --popover: #fcfbf8;
+    --lime: #d4f534;
+    --ink: #111317;
+    --red: #dc2626;
+    --cyan: #0284c7;
+    --paper: #eae5d7;
+    --paper-ink: #22252b;
+    --tape: rgba(195, 185, 155, 0.75);
+    --border: rgba(20, 23, 29, 0.16);
+    --muted: #626a79;
+    --input-bg: #ebe7df;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+.font-display {
+  font-family: 'Anton', 'Impact', sans-serif;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.88;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Film grain texture */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.13;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Technical grid blueprint lines */
+.bg-grid-tech {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Halftone dots */
+.halftone {
+  background-image: radial-gradient(rgba(242, 238, 227, 0.22) 1px, transparent 1.4px);
+  background-size: 6px 6px;
+}
+
+.halftone-lime {
+  background-image: radial-gradient(rgba(212, 245, 52, 0.2) 1px, transparent 1.4px);
+  background-size: 8px 8px;
+}
+
+/* Torn paper effect */
+.paper {
+  background-color: var(--paper);
+  color: var(--paper-ink);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .18 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+  clip-path: polygon(
+    0% 3%, 6% 0%, 14% 2%, 22% 0%, 31% 3%, 40% 1%, 48% 3%, 57% 0%, 66% 2%, 75% 0%, 84% 3%, 92% 1%, 100% 3%,
+    99% 20%, 100% 40%, 98% 60%, 100% 80%, 99% 97%,
+    92% 100%, 83% 97%, 74% 100%, 65% 98%, 55% 100%, 46% 97%, 37% 100%, 28% 98%, 18% 100%, 9% 97%, 0% 100%,
+    1% 80%, 0% 60%, 2% 40%, 0% 20%
+  );
+}
+
+/* Masking tape */
+.tape {
+  position: absolute;
+  height: 22px;
+  width: 84px;
+  background: var(--tape);
+  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Sticker label */
+.sticker {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 6px 10px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Fake barcode */
+.barcode {
+  height: 28px;
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0 2px,
+    transparent 2px 3px,
+    currentColor 3px 4px,
+    transparent 4px 7px,
+    currentColor 7px 10px,
+    transparent 10px 11px
+  );
+}
+
+/* Hard brutalist offset shadow */
+.brutal {
+  box-shadow: 4px 4px 0 var(--fg);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.brutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--fg);
+}
+
+.brutal-lime {
+  box-shadow: 4px 4px 0 var(--lime);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.brutal-lime:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--lime);
+}
+
+/* Magazine cover card */
+.cover {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+.cover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+.cover:active {
+  transform: scale(0.97) rotate(-0.5deg);
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--fg);
+}
+
+.outline-text-lime {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--lime);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(-2deg) scale(1.04);
+  }
+}
+.wiggle {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-24px) rotate(var(--r, 0deg)) scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+}
+.drop-in {
+  animation: drop-in 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.sheet-up {
+  animation: sheet-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.2s ease both;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "REGARM-MART - Digital Subscription Store",
+  "description": "Toko langganan aplikasi digital premium: Netflix, Spotify, ChatGPT, Canva Pro, YouTube, CapCut, Claude dengan harga terjangkau dan garansi terpercaya.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
